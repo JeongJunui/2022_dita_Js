@@ -1,0 +1,19 @@
+<script>
+    function program()
+    {
+        let result=false;
+        const correct=Math.floor(Math.random()*1000);
+        const answer=prompt(`${correct}를 입력하시오`);
+        result=(correct==answer);
+        //const result=confirm("낮입니까?");
+        if(result)
+        {
+            alert("정답");
+        }
+        else
+        {
+            alert("오답");
+        }
+    }
+    program();
+</script>
