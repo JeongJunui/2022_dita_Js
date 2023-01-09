@@ -1,0 +1,11 @@
+<script>
+    var num=1;
+    var num1=num;//값 자체 복사->값 변경해도 별도로 동작
+    num1=2;
+    console.log(num);
+
+    var array=[0,0,0,0];
+    var array1=array;//저장된 주소를 복사->값 변경시 둘 다 변경
+    array1[0]=1;
+    console.log(array);
+</script>
