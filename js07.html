@@ -26,7 +26,7 @@
     console.log(str.toUpperCase());
     console.log("     A  sD f    ".trim());*/
 
-    const arr=["A","s","D","f"];
+    /*const arr=["A","s","D","f"];
     console.log(arr.concat("z","X","c","V"));
     //console.log(arr.copyWithin(0,1,2));
     //console.log(arr.fill("Q"));
@@ -46,8 +46,45 @@
     console.log(arr.filter((value)=>value=="D"));
     console.log(arr.map((value)=>value=="D"));
     console.log(arr.map((value)=>value.charCodeAt(0)));
-    //reduce=요소 합치기
-    //every=모든 요소가 조건에 부합하는지
-    //some=하나의 요소라도 조건에 부합하는지
-    //find=조건에 부합하는 요소 찾기
+    console.log(arr.every((value)=>(value>='A' && value<='Z')));
+    console.log(arr.some((value)=>value=="A"));
+    console.log(arr.find((value)=>(value>="a" && value<="z")));
+    //reduce=요소 합치기*/
+
+    /*const obj1={
+        key : "value",
+        func : (value)=>value,
+        func1(value)
+        {
+            return value;
+        },
+        array : [1,2,3,4],
+        obj : {
+            key : "value1",
+        },
+    };
+
+    console.log(obj1.key);
+    console.log(obj1.obj.key);
+    console.log(obj1.func(1));*/
+
+    /*console.log(Math.PI);
+    console.log(Math.abs(-5));
+    console.log(Math.ceil(1.2));
+    console.log(Math.floor(1.7));
+    console.log(Math.round(1.5));
+    console.log(Math.pow(2,3));
+    console.log(Math.max(1,2,3));
+    console.log(Math.min(...[4,7,8,2]));
+    console.log(Math.floor(Math.random()*10));*/
+
+    console.log(Date.now());
+    const myDate=new Date("2020-11-10 00:00:00");
+    console.log(myDate.getTime());
+    console.log(myDate);
+    console.log(myDate.getFullYear());
+    console.log(myDate.getDate());
+    console.log(myDate.getMonth());
+    console.log(myDate.getDay());
+    console.log(myDate.toJSON());
 </script>
