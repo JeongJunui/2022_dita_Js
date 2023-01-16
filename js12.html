@@ -1,0 +1,44 @@
+<script>
+    //async await
+    //1. async 없는 함수에서 promise
+    const noAsyncFunc=()=>{
+        const pro1=new Promise((resolve,reject)=>
+        {
+            setTimeout(()=>{
+                resolve("pro1 완료");
+            },2000);
+        });
+        const pro2=new Promise((resolve,reject)=>
+        {
+            setTimeout(()=>{
+                resolve("pro2 완료");
+            },1000);
+        });
+        //then 안의 함수=콜백 함수
+        pro1.then((response)=>{console.log(response)});//promise는 먼저 끝나는 순서대로 실행됨
+        pro2.then((response)=>{console.log(response)});
+    };
+    //noAsyncFunc();
+    //2. async 있는 함수에서 promise
+    const asyncFunc=async()=>{
+        const pro1=new Promise((resolve,reject)=>
+        {
+            setTimeout(()=>{
+                resolve("pro1 완료");
+            },2000);
+        });
+        const pro2=new Promise((resolve,reject)=>
+        {
+            setTimeout(()=>{
+                resolve("pro2 완료");
+            },1000);
+        });
+        //await 사용시 결과는 순서대로 작동됨
+        const res1=await pro1;
+        console.log(res1);
+        const res2=await pro2;//앞에서 2초가 지난 뒤이므로 이미 동작할 준비가 되어있음
+        console.log(res2);
+    };
+    //async 함수는 promise만 리턴함->일반 함수처럼 값을 리턴시키는 것은 어려우므로 비동기가 필요 없다면 일반함수 사용할 것
+    asyncFunc();
+</script>
