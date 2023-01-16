@@ -1,0 +1,35 @@
+<script>
+    /*console.log(Date.now());
+    setTimeout(()=>{
+        console.log("hello");
+        console.log(Date.now());
+    },2000);//작동지연
+    setInterval(()=>{
+        console.log(Date.now());
+    },2000);//자동반복
+    const myInter=setInterval(()=>
+    {
+        console.log(Date.now());
+    },2000);
+    setTimeout(()=>{
+        clearInterval(myInter);
+    },10000)*/
+    //promise: 값이 들어오기 전까지 열리지 않다가 값이 들어오면 개방
+    //보통 통신, 혹은 입출력시 사용
+    const prom= new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve("Delivery");
+            //reject("lost");
+        },2000);
+    });
+    prom.then((response)=>{
+        console.log(response);
+        return "open";
+    }).catch((error)=>{
+        console.log(error);
+    }).finally(()=>{//통신 성공 여부에 상관없이 작동
+        console.log("finally");
+    }).then((response)=>{
+        console.log(response);
+    });
+</script>
