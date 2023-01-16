@@ -1,0 +1,47 @@
+<script>
+    const breakFunc=()=>
+    {
+        let count=0;
+        while(count<100)
+        {
+            console.log(`${count} break test`);
+            if(count>10)
+            {
+                break;
+            }
+            count=count+1;
+        }
+        console.log("breakthrough");
+    };
+    breakFunc();
+    const continueFunc=()=>
+    {
+        let count=0;
+        while(count<100)
+        {
+            console.log(`${count} continue test`);
+            count=count+1;
+            if(count==98)
+            {
+                continue;
+            }
+        }
+        console.log("continued");
+    };
+    continueFunc();
+    const returnFunc=()=>
+    {
+        let count=0;
+        while(count<100)
+        {
+            console.log(`${count} return test`);
+            if(count>10)
+            {
+                return;
+            }
+            count=count+1;
+        }
+        console.log("returned");
+    };
+    returnFunc();
+</script>
