@@ -42,14 +42,42 @@
       </div>
     </nav>
     <div class="container">
-      <div id="cardGroup" class="card-group row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-5">
+      <div id="cardGroup" class="card-group row-cols-1 row-cols-md-1 row-cols-lg-1 row-cols-xl-2 row-cols-xxl-3">
       </div>
     </div>
   </body>
   <script>
-    const cards=[0,0,0,0,0,0,0];
-    const cardGroup=document.getElementById("cardGroup");
-    cards.forEach((value,index)=>{
+    fetch("https://apis.data.go.kr/6260000/AttractionService/getAttractionKr?serviceKey=D4liD2yDLk7gwHd0sPRY49B%2FtydK8LiOoEnmiuOk8aEGexcIVdb82998DjjN7neHN3lfEX71trsFmfQw0wltCQ%3D%3D&pageNo=1&numOfRows=10&resultType=json").then((res)=>res.json()).then((response)=>{
+      const cards=response.getAttractionKr.item;    const cardGroup=document.getElementById("cardGroup");
+      cards.forEach((value,index)=>{
+          cardGroup.insertAdjacentHTML("beforeend",`<div class="col">
+            <div class="card m-3">
+              <img
+                src="${value.MAIN_IMG_THUMB}"
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a href="${value.HOMEPAGE_URL}" target="_blank">${value.MAIN_TITLE}</a>
+                  </h5>
+                <p class="card-text">
+                  ${value.ITEMCNTNTS}
+                </p>
+                <p class="card-text">
+                  <small class="text-muted">${value.USAGE_DAY_WEEK_AND_TIME}</small>
+                </p>
+              </div>
+            </div>
+            </div>
+          </div>`);
+      });
+
+      //console.log(response.getAttractionKr.item);
+    });
+    //const cards=[0,0,0,0,0,0,0];
+    //const cardGroup=document.getElementById("cardGroup");
+    /*cards.forEach((value,index)=>{
         cardGroup.insertAdjacentHTML("beforeend",`<div class="col">
           <div class="card m-3">
             <img
@@ -71,6 +99,6 @@
           </div>
           </div>
         </div>`);
-    });
+    });*/
   </script>
 </html>
