@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +7,55 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h1>숫자 맞추기 게임</h1>
+    <div>
+        <span id="resultLabel">자연수를 입력하세요(1~1000)</label>
+    </div>
+    <div>
+        <span id="countLabel">0회 시도했습니다</label>
+    </div>
+    <input id="answerInput" type="number">
+    <button id="checkButton" type="button">확인</button>
+    <button id="resetButton" type="button">재시작</button>
 </body>
+<script>
+    const resultLabel=document.getElementById("resultLabel");
+    const countLabel=document.getElementById("countLabel");
+    const answerInput=document.getElementById("answerInput");
+    const checkButton=document.getElementById("checkButton");
+    const resetButton=document.getElementById("resetButton");
+    let answerNumber=Math.floor((Math.random()*1000)+1);
+    let checkCount=0;
+    checkButton.addEventListener("click",()=>{
+        let doubtNumber=answerInput.value;
+        checkCount+=1;
+        if(doubtNumber==answerNumber)
+        {
+            resultLabel.innerText="정답입니다!";
+            checkButton.disabled=true;
+        }
+        else if(doubtNumber<answerNumber)
+        {
+            resultLabel.innerText="더 높은 숫자입니다";
+            countLabel.innerText=checkCount+"회 시도했습니다";
+        }
+        else
+        {
+            resultLabel.innerText="더 낮은 숫자입니다";
+            countLabel.innerText=checkCount+"회 시도했습니다";
+            answerInput.setvi
+        }
+    });
+    resetButton.addEventListener("click",()=>{
+        const resp=confirm("재시작하시겠습니까?");
+        if(resp)
+        {
+            answerNumber=Math.floor((Math.random()*1000)+1);
+            resultLabel.innerText="자연수를 입력하세요(1~1000)";
+            checkCount=0;
+            countLabel.innerHTML=checkCount+"회 시도했습니다";
+            checkButton.disabled=false;
+        }
+    });
+</script>
 </html>
