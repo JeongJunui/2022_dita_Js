@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>미니게임 모음</h4>
+    <div>
+        <button id="updownBtn">숫자맞추기 게임</button>
+        <button id="tictactoe">틱택토(2인용)</button>
+    </div>
+</body>
+<script>
+    const updownBtn=document.getElementById("updownBtn");
+    const tictactoe=document.getElementById("tictactoe");
+    let popup=null;
+    updownBtn.addEventListener("click",()=>{
+        popup=window.open("updownGame.html","popup","width=500,height=400,left=200,top=200,scrollbars=no,resizable=no");
+    });
+</script>
+</html>
