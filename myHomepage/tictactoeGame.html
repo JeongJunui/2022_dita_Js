@@ -9,28 +9,54 @@
         table{
             border-collapse: collapse;
         }
+        td
+        {
+            border: 2px solid black;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h4>틱택토 게임</h4>
-    <table>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <script>
+        const array=[1,2,3,4,5];
+        const{body}=document;
+        const tTable=document.createElement('table');
+        const tResult=document.createElement('div');
+        let turn='O';
+        const rows=[];
+        for(let i=0;i<3;i++)
+        {
+            const tTr=document.createElement('tr');
+            const cells=[];
+            for(let j=0;j<3;j++)
+            {
+                const tTd=document.createElement('td');
+                cells.push(tTd);
+                tTd.addEventListener('click',(event)=>{
+                    if(event.target.textContent)
+                    {
+                        alert("이미 표시가 된 칸입니다");
+                        return;
+                    }
+                    event.target.textContent=turn;
+                    if(turn=='O')
+                    {
+                        turn='X';
+                    }
+                    else if(turn=='X')
+                    {
+                        turn='O';
+                    }
+                });
+                tTr.append(tTd);
+                rows.push(cells);
+            }
+            tTable.append(tTr);
+        }
+        document.body.append(tTable);
+        document.body.append(tResult);
+    </script>
 </body>
-<script>
-</script>
 </html>
