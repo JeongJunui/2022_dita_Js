@@ -20,43 +20,102 @@
 </head>
 <body>
     <script>
-        const array=[1,2,3,4,5];
-        const{body}=document;
-        const tTable=document.createElement('table');
-        const tResult=document.createElement('div');
-        let turn='O';
-        const rows=[];
-        for(let i=0;i<3;i++)
-        {
-            const tTr=document.createElement('tr');
-            const cells=[];
-            for(let j=0;j<3;j++)
-            {
-                const tTd=document.createElement('td');
-                cells.push(tTd);
-                tTd.addEventListener('click',(event)=>{
-                    if(event.target.textContent)
-                    {
-                        alert("이미 표시가 된 칸입니다");
-                        return;
-                    }
-                    event.target.textContent=turn;
-                    if(turn=='O')
-                    {
-                        turn='X';
-                    }
-                    else if(turn=='X')
-                    {
-                        turn='O';
-                    }
-                });
-                tTr.append(tTd);
-                rows.push(cells);
-            }
-            tTable.append(tTr);
+        const { body } = document;
+        const tTable = document.createElement('table'); 
+        const tResult = document.createElement('div');
+        const rows = [];
+        let turn = 'O';
+        const checkWin = (target) => {
+          const rowIdx = target.parentNode.rowIndex; 
+          const cellIdx = target.cellIndex; 
+          let hasWin = false;
+          if (
+            rows[rowIdx][0].textContent === turn &&
+            rows[rowIdx][1].textContent === turn &&
+            rows[rowIdx][2].textContent === turn
+          ) {
+            hasWin = true;
+          }
+          // 세로줄 검사
+          if (
+            rows[0][cellIdx].textContent === turn &&
+            rows[1][cellIdx].textContent === turn &&
+            rows[2][cellIdx].textContent === turn
+          ) {
+            hasWin = true;
+          }
+          // 대각선 검사
+          if (
+            rows[0][0].textContent === turn &&
+            rows[1][1].textContent === turn &&
+            rows[2][2].textContent === turn
+          ) {
+            hasWin = true;
+          }
+          if (
+            rows[0][2].textContent === turn &&
+            rows[1][1].textContent === turn &&
+            rows[2][0].textContent === turn
+          ) {
+            hasWin = true;
+          }
+          return hasWin;
+        };
+    
+        const checkWinOrDraw = (target) => {
+          const hasWin = checkWin(target);
+          // 승자가 있으면 
+          if (hasWin) { 
+            tResult.textContent = `${turn}님이 승리!!`;
+            tTable.removeEventListener('click', callback);
+            return;
+          }
+          // 승자가 없으면 
+          const draw = rows.flat().every((td) => td.textContent); 
+          if (draw) {
+            tResult.textContent = `무승부`;
+            return;
+          }
+          turn = turn === 'O' ? 'X' : 'O'; 
+        };
+    
+        let clickable = true;
+        const callback = (event) => {
+          if (!clickable) return;
+          if (event.target.textContent !== '') { 
+            alert('이미 표시가 된 칸입니다');
+            return;
+          }
+          event.target.textContent = turn;
+          checkWinOrDraw(event.target);
+    
+          if (turn === 'X') {
+            clickable = false;
+            setTimeout(() => {
+              const emptyCell = rows.flat().filter((v) => !v.textContent);
+              const randomCell = emptyCell[Math.floor(Math.random() * emptyCell.length)];
+              randomCell.textContent = 'X';
+              checkWinOrDraw(event.target);
+              clickable = true;
+            }, 1000);
+          }
+        };
+    
+        for (let i = 1; i <= 3; i++) {
+          const tTr = document.createElement('tr');
+          const cells = [];
+          for (let j = 1; j <= 3; j++) {
+            const tTd = document.createElement('td');
+            cells.push(tTd); // 함수는 분리할 수 있으면 분리하기
+            tTr.append(tTd);
+          }
+          rows.push(cells);
+          tTable.append(tTr);
         }
-        document.body.append(tTable);
-        document.body.append(tResult);
-    </script>
+        tTable.addEventListener('click', callback);  
+        body.append(tTable);
+        body.append(tResult);
+    
+       </script>
 </body>
 </html>
